@@ -83,7 +83,7 @@ int main()
 
 		Window.clear();
 		Window.draw(titleName);
-		Window.draw(PacManSprite);
+		//Window.draw(PacManSprite);
 		Window.draw(shape);
 		Window.display();
 	}
