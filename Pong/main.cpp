@@ -10,6 +10,8 @@ int main()
 {
 	unsigned int direction = 0;
 
+	//Test comment
+
 	//Window
 	sf::VideoMode defaultVM(WINDOWS_WIDTH, WINDOWS_HEIGHT);
 	sf::RenderWindow Window(defaultVM, "Zombies Vs Plants", sf::Style::Default);
