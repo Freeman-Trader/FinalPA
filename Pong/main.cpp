@@ -12,7 +12,7 @@ int main()
 
 	//Window
 	sf::VideoMode defaultVM(WINDOWS_WIDTH, WINDOWS_HEIGHT);
-	sf::RenderWindow Window(defaultVM, "Pac-Man", sf::Style::Default);
+	sf::RenderWindow Window(defaultVM, "Zombies Vs Plants", sf::Style::Default);
 
 
 	//Title - Currently needs a font .ttf file to work with
