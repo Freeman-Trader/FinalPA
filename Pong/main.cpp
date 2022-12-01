@@ -19,7 +19,7 @@ int main()
 	sf::Font defaultFont;
 	if(!defaultFont.loadFromFile("CrackMan.TTF"))
 		{return -1;}
-	sf::Text titleName("PACMAN", defaultFont, 100);
+	sf::Text titleName("Zombies Vs Plants", defaultFont, 25);
 	titleName.setColor(sf::Color::Cyan);
 	
 
@@ -30,16 +30,14 @@ int main()
 	shape.setFillColor(sf::Color::Yellow);
 	shape.setOutlineColor(sf::Color::Red);
 
-	sf::Texture PacManTexture;
+	//For Sprites
+	/*sf::Texture PacManTexture;
 	if (!PacManTexture.loadFromFile("pacman-png.png"))
 	{
 		return 1;
 	}
-
 	sf::Sprite PacManSprite;
-	PacManSprite.setTexture(PacManTexture);
-	//PacManSprite.
-	PacManSprite.setScale(100.f, 100.f);
+	PacManSprite.setTexture(PacManTexture);*/
 
 
 	while (Window.isOpen())
