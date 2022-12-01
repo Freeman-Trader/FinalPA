@@ -81,7 +81,7 @@ int main()
 			break;
 		}
 
-		Window.clear();
+		Window.clear(sf::Color::Green); //set background color to green
 		Window.draw(titleName);
 		//Window.draw(PacManSprite);
 		Window.draw(shape);
