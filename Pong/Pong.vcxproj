@@ -160,6 +160,9 @@
     <Font Include="arial.ttf" />
     <Font Include="CrackMan.TTF" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BasePlantClass.hpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
