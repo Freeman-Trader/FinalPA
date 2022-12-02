@@ -54,29 +54,64 @@ int main()
 		sf::Event event;
 		while (Window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
-				Window.close();
+			/*if (event.type == sf::Event::Closed)
+				Window.close();*/
+
+			switch (Event.type)
+			{
+			case sf::Event::Closed:
+				window.close();
+				break;
+			case sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W):
+				direction = 1;
+				break;
+			case sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D):
+				direction = 2;
+				break;
+			case sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S):
+				direction = 3;
+				break;
+			case sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A):
+				direction = 4;
+				break;
+
+			}
+
+			switch (direction)
+			{
+			case 1: shape.move(0.f, -MOVEMENT_SPEED);
+				break;
+			case 2: shape.move(MOVEMENT_SPEED, 0.f);
+				break;
+			case 3: shape.move(0.f, MOVEMENT_SPEED);
+				break;
+			case 4: shape.move(-MOVEMENT_SPEED, 0.f);
+				break;
+			default:
+				break;
+			}
+		
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
 			direction = 1;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		}*/
+		/*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			direction = 2;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		}*/
+		/*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
 			direction = 3;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		}*/
+		/*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
 			direction = 4;
-		}
+		}*/
 		
 
-		switch (direction)
+		/*switch (direction)
 		{
 		case 1: shape.move(0.f, -MOVEMENT_SPEED);
 			break;
@@ -88,7 +123,7 @@ int main()
 			break;
 		default:
 			break;
-		}
+		}*/
 
 		Window.clear(sf::Color::Green); //set background color to green
 		Window.draw(PlantButton);
