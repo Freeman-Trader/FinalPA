@@ -75,6 +75,15 @@ int main()
 				direction = 4;
 				break;
 
+			case sf::Event::MouseButtonPressed: //clicking on Plant Button
+				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+				if (PlantButton.getGlobalBounds().contains(mousePosF))
+				{
+					std::cout << "Clicked, yay!" << std::endl;
+				}
+			break;
+
 			}
 
 			switch (direction)
