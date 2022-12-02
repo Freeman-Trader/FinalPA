@@ -39,6 +39,15 @@ int main()
 	sf::Sprite PacManSprite;
 	PacManSprite.setTexture(PacManTexture);*/
 
+	//Button Objects
+	sf::Vector2f ButtonSize;
+	ButtonSize.x = 50;
+	ButtonSize.y = 50;
+
+	sf::RectangleShape PlantButton;
+	PlantButton.setSize(ButtonSize);
+	PlantButton.setFillColor(sf::Color::White);
+	PlantButton.setPosition(0, Window.getSize().y - ButtonSize.y);
 
 	while (Window.isOpen())
 	{
@@ -82,6 +91,7 @@ int main()
 		}
 
 		Window.clear(sf::Color::Green); //set background color to green
+		Window.draw(PlantButton);
 		Window.draw(titleName);
 		//Window.draw(PacManSprite);
 		Window.draw(shape);
