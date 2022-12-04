@@ -1,5 +1,6 @@
 
 #include <SFML/Graphics.hpp>
+#include <time.h>
 
 #define WINDOWS_WIDTH 500
 #define WINDOWS_HEIGHT 500
@@ -8,7 +9,7 @@
 
 typedef enum status
 {
-	dead, alive
+	dead, alive, won
 }Status;
 
 class ZVP
@@ -16,12 +17,16 @@ class ZVP
 public:
 	ZVP()
 	{
-		points = 100;
+		numWalnuts = 3;
+		walnutTimer = 0;
 		gameStatus = alive;
 	}
 	void runGame();
+	void genWalnutTime();
 
 private:
-	int points;
+	int numWalnuts;
+	int walnutTimer;
+	sf::Clock clock;
 	Status gameStatus;
 };

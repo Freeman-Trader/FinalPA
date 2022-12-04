@@ -3,9 +3,11 @@
 
 void ZVP::runGame()
 {
+	int i = 0;
 	int timeInt = 0;
-	sf::Clock clock;
 	sf::Time time;
+
+	sf::RectangleShape Walnuts[5]; //update with walnut class
 
 	sf::VideoMode defaultVM(WINDOWS_WIDTH, WINDOWS_HEIGHT);
 	sf::RenderWindow Window(defaultVM, "Zombies Vs Plants", sf::Style::Default);
@@ -14,50 +16,57 @@ void ZVP::runGame()
 	{
 		time = clock.getElapsedTime();
 		timeInt = time.asMilliseconds();
-
-		// adds 25 points every 20 seconds
-		// amount of time may need to be changed
-		// wasn't sure how to display to the screen and when I tried, I couldn't access the .TTF 
-		// files for some reason
-		if (timeInt % 20000 == 0)
+		if(timeInt == 300000)
 		{
-			points += 25;
+			gameStatus = won;
 		}
+
+		//sf::Event event;
+		//while (Window.pollEvent(event))
+		//{
+		//	if (event.type == sf::Event::Closed)
+		//		Window.close();
+		//}
 
 		sf::Event event;
 		while (Window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
+			{
 				Window.close();
-		}
+			}
 
-		// Mouse
+			//Place Walnuts
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Right))//place walnut 
+			{
+				sf::Vector2f WalnutSize;
+				WalnutSize.x = 20;
+				WalnutSize.y = 20;
 
-		// set mouse position relative to window
-		sf::Mouse::setPosition(sf::Vector2i(100, 200), Window);
+				Walnuts[numWalnuts].setSize(WalnutSize);
+				Walnuts[numWalnuts].setFillColor(sf::Color::Brown);
 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			// left click
-			// could be how to place the last plant type pressed
-		}
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
-		{
-			// right click
-			// could be how to remove a plant
-		}
+				sf::Vector2i mousePos = sf::Mouse::getPosition(Window);
+				sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+				Walnuts[numWalnuts].setPosition(mousePosF);
 
-		// gets mouse position
-		// will need to be used to place/remove plants
-		sf::Vector2i position = sf::Mouse::getPosition(Window);
+				std::cout << "Walnut is Placed" << std::endl;
+			}
+			
 		
-
-		Window.clear();
-		// Window.draw(); 
-		Window.display();
-		
-
-		// function for when a zombie crosses the edge of the board
-		// gameStatus = dead;
+			
+			Window.clear(sf::Color::Green); //set background color to green
+			for(i = 0; i < numWalnuts; i ++)
+			{
+				Window.draw(Walnuts[i]);
+			}
+			//Window.draw(titleName);
+			Window.display();
+		}
 	}
+}
+
+void PVZ::genWalnutTime()
+{
+	walnutTimer = rand() % 20000;
 }

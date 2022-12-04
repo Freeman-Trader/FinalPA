@@ -11,15 +11,16 @@
 
 int main()
 {
-	//ZVP game;
-
-	// game.runGame();
+	srand((unsigned int)time(NULL));
+	ZVP game;
+	//int i = 0;
+	game.runGame();
 
 	//unsigned int direction = 0;
 
 	//Window
-	sf::VideoMode defaultVM(WINDOWS_WIDTH, 250);
-	sf::RenderWindow Window(defaultVM, "Zombies Vs Plants", sf::Style::Default);
+	//sf::VideoMode defaultVM(WINDOWS_WIDTH, 250);
+	//sf::RenderWindow Window(defaultVM, "Zombies Vs Plants", sf::Style::Default);
 
 	//Title - Currently needs a font .ttf file to work with
 	//sf::Font defaultFont;
@@ -28,70 +29,46 @@ int main()
 	//sf::Text titleName("Zombies Vs Plants", defaultFont, 25);
 	//titleName.setColor(sf::Color::Cyan);
 
-	//Button Objects
-	bool ableToPlace;
-	ableToPlace = false;
+	//sf::RectangleShape Walnuts[5]; //update with walnut class
 
-	sf::Vector2f ButtonSize;
-	ButtonSize.x = 50;
-	ButtonSize.y = 50;
+	//while (Window.isOpen())
+	//{
+	//	sf::Event event;
+	//	while (Window.pollEvent(event))
+	//	{
+	//		if (event.type == sf::Event::Closed)
+	//		{
+	//			Window.close();
+	//		}
 
-	sf::RectangleShape PeaPlantButton;
-	PeaPlantButton.setSize(ButtonSize);
-	PeaPlantButton.setFillColor(sf::Color::Brown);
-	PeaPlantButton.setPosition(0, Window.getSize().y - ButtonSize.y);
+	//		//Place Walnuts
+	//		if (sf::Mouse::isButtonPressed(sf::Mouse::Right))//place walnut 
+	//		{
+	//			sf::Vector2f WalnutSize;
+	//			WalnutSize.x = 20;
+	//			WalnutSize.y = 20;
 
-	sf::RectangleShape PeaPlant;
+	//			Walnuts[game.numWalnuts].setSize(WalnutSize);
+	//			Walnuts[game.numWalnuts].setFillColor(sf::Color::Brown);
 
-	while (Window.isOpen())
-	{
-		sf::Event event;
-		while (Window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				Window.close();
-			}
+	//			sf::Vector2i mousePos = sf::Mouse::getPosition(Window);
+	//			sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+	//			Walnuts[game.numWalnuts].setPosition(mousePosF);
 
-
-			sf::Vector2i mousePos = sf::Mouse::getPosition(Window);
-			sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-			if (PeaPlantButton.getGlobalBounds().contains(mousePosF) && sf::Mouse::isButtonPressed(sf::Mouse::Left)) //if button is clicked
-			{
-				ableToPlace = true;
-				std::cout << "Button is Pressed" << std::endl;
-			}
-
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && ableToPlace == true)//place plant 
-			{
-				//sf::RectangleShape Plant;
-
-				sf::Vector2f PeaPlantSize;
-				PeaPlantSize.x = 20;
-				PeaPlantSize.y = 20;
-
-				PeaPlant.setSize(PeaPlantSize);
-				PeaPlant.setFillColor(sf::Color::Brown);
-				sf::Vector2i mousePos = sf::Mouse::getPosition(Window);
-				sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-				PeaPlant.setPosition(mousePosF);
-
-				//Window.draw(Plant);
-				//Window.display();
-
-				ableToPlace = false;
-				std::cout << "Plant is Placed" << std::endl;
-			}
+	//			std::cout << "Walnut is Placed" << std::endl;
+	//		}
 			
 		
 			
-			Window.clear(sf::Color::Green); //set background color to green
-			Window.draw(PeaPlantButton);
-			Window.draw(PeaPlant);
-			//Window.draw(titleName);
-			Window.display();
-		}
-	}
+	//		Window.clear(sf::Color::Green); //set background color to green
+	//		for(i = 0; i < game.numWalnuts; i ++)
+	//		{
+	//			Window.draw(Walnuts[i]);
+	//		}
+	//		//Window.draw(titleName);
+	//		Window.display();
+	//	}
+	//}
 
 	return 0;
 }
