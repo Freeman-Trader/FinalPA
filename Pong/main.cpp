@@ -11,16 +11,15 @@
 
 int main()
 {
-	ZVP game;
+	//ZVP game;
 
-	game.runGame();
+	// game.runGame();
 
 	//unsigned int direction = 0;
 
 	//Window
-	//sf::VideoMode defaultVM(WINDOWS_WIDTH, WINDOWS_HEIGHT);
-	//sf::RenderWindow Window(defaultVM, "Zombies Vs Plants", sf::Style::Default);
-
+	sf::VideoMode defaultVM(WINDOWS_WIDTH, 250);
+	sf::RenderWindow Window(defaultVM, "Zombies Vs Plants", sf::Style::Default);
 
 	//Title - Currently needs a font .ttf file to work with
 	//sf::Font defaultFont;
@@ -28,135 +27,70 @@ int main()
 	//	{return -1;}
 	//sf::Text titleName("Zombies Vs Plants", defaultFont, 25);
 	//titleName.setColor(sf::Color::Cyan);
-	
-
-	//Pacman Object
-	//sf::CircleShape shape;
-	//shape.setRadius(50.f);
-	//shape.setOutlineThickness(5.f);
-	//shape.setFillColor(sf::Color::Yellow);
-	//shape.setOutlineColor(sf::Color::Red);
-
-	//For Sprites
-	/*sf::Texture PacManTexture;
-	if (!PacManTexture.loadFromFile("pacman-png.png"))
-	{
-		return 1;
-	}
-	sf::Sprite PacManSprite;
-	PacManSprite.setTexture(PacManTexture);*/
 
 	//Button Objects
+	bool ableToPlace;
+	ableToPlace = false;
+
 	sf::Vector2f ButtonSize;
 	ButtonSize.x = 50;
 	ButtonSize.y = 50;
 
-	sf::RectangleShape PlantButton;
-	PlantButton.setSize(ButtonSize);
-	PlantButton.setFillColor(sf::Color::White);
-	PlantButton.setPosition(0, Window.getSize().y - ButtonSize.y);
+	sf::RectangleShape PeaPlantButton;
+	PeaPlantButton.setSize(ButtonSize);
+	PeaPlantButton.setFillColor(sf::Color::Brown);
+	PeaPlantButton.setPosition(0, Window.getSize().y - ButtonSize.y);
+
+	sf::RectangleShape PeaPlant;
 
 	while (Window.isOpen())
 	{
 		sf::Event event;
 		while (Window.pollEvent(event))
 		{
-			/*if (event.type == sf::Event::Closed)
-				Window.close();*/
-
-
-
-
-
-
-
-
-
-
-
-			switch (event.type)
+			if (event.type == sf::Event::Closed)
 			{
-			case sf::Event::Closed:
 				Window.close();
-				break;
-			case sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W):
-				direction = 1;
-				break;
-			case sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D):
-				direction = 2;
-				break;
-			case sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S):
-				direction = 3;
-				break;
-			case sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A):
-				direction = 4;
-				break;
+			}
 
-			case sf::Event::MouseButtonPressed: //clicking on Plant Button
+
+			sf::Vector2i mousePos = sf::Mouse::getPosition(Window);
+			sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+			if (PeaPlantButton.getGlobalBounds().contains(mousePosF) && sf::Mouse::isButtonPressed(sf::Mouse::Left)) //if button is clicked
+			{
+				ableToPlace = true;
+				std::cout << "Button is Pressed" << std::endl;
+			}
+
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && ableToPlace == true)//place plant 
+			{
+				//sf::RectangleShape Plant;
+
+				sf::Vector2f PeaPlantSize;
+				PeaPlantSize.x = 20;
+				PeaPlantSize.y = 20;
+
+				PeaPlant.setSize(PeaPlantSize);
+				PeaPlant.setFillColor(sf::Color::Brown);
 				sf::Vector2i mousePos = sf::Mouse::getPosition(Window);
 				sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
-				if (PlantButton.getGlobalBounds().contains(mousePosF))
-				{
-					std::cout << "Clicked, yay!" << std::endl;
-				}
-			break;
+				PeaPlant.setPosition(mousePosF);
 
-			}
+				//Window.draw(Plant);
+				//Window.display();
 
-			switch (direction)
-			{
-			case 1: shape.move(0.f, -MOVEMENT_SPEED);
-				break;
-			case 2: shape.move(MOVEMENT_SPEED, 0.f);
-				break;
-			case 3: shape.move(0.f, MOVEMENT_SPEED);
-				break;
-			case 4: shape.move(-MOVEMENT_SPEED, 0.f);
-				break;
-			default:
-				break;
+				ableToPlace = false;
+				std::cout << "Plant is Placed" << std::endl;
 			}
+			
 		
+			
+			Window.clear(sf::Color::Green); //set background color to green
+			Window.draw(PeaPlantButton);
+			Window.draw(PeaPlant);
+			//Window.draw(titleName);
+			Window.display();
 		}
-
-		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		{
-			direction = 1;
-		}*/
-		/*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		{
-			direction = 2;
-		}*/
-		/*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		{
-			direction = 3;
-		}*/
-		/*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		{
-			direction = 4;
-		}*/
-		
-
-		/*switch (direction)
-		{
-		case 1: shape.move(0.f, -MOVEMENT_SPEED);
-			break;
-		case 2: shape.move(MOVEMENT_SPEED, 0.f);
-			break;
-		case 3: shape.move(0.f, MOVEMENT_SPEED);
-			break;
-		case 4: shape.move(-MOVEMENT_SPEED, 0.f);
-			break;
-		default:
-			break;
-		}*/
-
-		Window.clear(sf::Color::Green); //set background color to green
-		Window.draw(PlantButton);
-		Window.draw(titleName);
-		//Window.draw(PacManSprite);
-		Window.draw(shape);
-		Window.display();
 	}
 
 	return 0;
