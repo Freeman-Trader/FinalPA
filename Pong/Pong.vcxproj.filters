@@ -18,6 +18,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ZVP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Pictures\pacman-png.png">
@@ -44,6 +47,9 @@
   <ItemGroup>
     <ClInclude Include="BasePlantClass.hpp">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZVP.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
