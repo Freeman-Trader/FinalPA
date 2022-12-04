@@ -1,5 +1,6 @@
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 #define WINDOWS_WIDTH 500
 #define WINDOWS_HEIGHT 500
@@ -57,10 +58,20 @@ int main()
 			/*if (event.type == sf::Event::Closed)
 				Window.close();*/
 
-			switch (Event.type)
+
+
+
+
+
+
+
+
+
+
+			switch (event.type)
 			{
 			case sf::Event::Closed:
-				window.close();
+				Window.close();
 				break;
 			case sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W):
 				direction = 1;
@@ -76,7 +87,7 @@ int main()
 				break;
 
 			case sf::Event::MouseButtonPressed: //clicking on Plant Button
-				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				sf::Vector2i mousePos = sf::Mouse::getPosition(Window);
 				sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 				if (PlantButton.getGlobalBounds().contains(mousePosF))
 				{
