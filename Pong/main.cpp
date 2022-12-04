@@ -39,35 +39,88 @@ int main()
 	sf::Sprite PacManSprite;
 	PacManSprite.setTexture(PacManTexture);*/
 
+	//Button Objects
+	sf::Vector2f ButtonSize;
+	ButtonSize.x = 50;
+	ButtonSize.y = 50;
+
+	sf::RectangleShape PlantButton;
+	PlantButton.setSize(ButtonSize);
+	PlantButton.setFillColor(sf::Color::White);
+	PlantButton.setPosition(0, Window.getSize().y - ButtonSize.y);
 
 	while (Window.isOpen())
 	{
 		sf::Event event;
 		while (Window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
-				Window.close();
+			/*if (event.type == sf::Event::Closed)
+				Window.close();*/
+
+			switch (Event.type)
+			{
+			case sf::Event::Closed:
+				window.close();
+				break;
+			case sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W):
+				direction = 1;
+				break;
+			case sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D):
+				direction = 2;
+				break;
+			case sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S):
+				direction = 3;
+				break;
+			case sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A):
+				direction = 4;
+				break;
+
+			case sf::Event::MouseButtonPressed: //clicking on Plant Button
+				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
+				if (PlantButton.getGlobalBounds().contains(mousePosF))
+				{
+					std::cout << "Clicked, yay!" << std::endl;
+				}
+			break;
+
+			}
+
+			switch (direction)
+			{
+			case 1: shape.move(0.f, -MOVEMENT_SPEED);
+				break;
+			case 2: shape.move(MOVEMENT_SPEED, 0.f);
+				break;
+			case 3: shape.move(0.f, MOVEMENT_SPEED);
+				break;
+			case 4: shape.move(-MOVEMENT_SPEED, 0.f);
+				break;
+			default:
+				break;
+			}
+		
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
 			direction = 1;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		}*/
+		/*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			direction = 2;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		}*/
+		/*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
 			direction = 3;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		}*/
+		/*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
 			direction = 4;
-		}
+		}*/
 		
 
-		switch (direction)
+		/*switch (direction)
 		{
 		case 1: shape.move(0.f, -MOVEMENT_SPEED);
 			break;
@@ -79,9 +132,10 @@ int main()
 			break;
 		default:
 			break;
-		}
+		}*/
 
-		Window.clear();
+		Window.clear(sf::Color::Green); //set background color to green
+		Window.draw(PlantButton);
 		Window.draw(titleName);
 		//Window.draw(PacManSprite);
 		Window.draw(shape);
